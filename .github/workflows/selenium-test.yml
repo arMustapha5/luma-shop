@@ -57,12 +57,11 @@ jobs:
             {
               "color": "${{ job.status == 'success' && '#36a64f' || '#dc3545' }}",
               "title": "🧪 Luma Test Results - ${{ matrix.os }}",
-              "text": "${{ job.status == 'success' && '✅ All tests passed!' || '❌ Some tests failed!' }}",
+              "text": "${{ job.status == 'success' && '✅ Amalitech will not  kill me🤣🤣!' || '❌ Eka aba fie😭😭😒!' }}",
               "footer": "Automated Selenium Test Results"
             }
           ]
         }' ${{ secrets.SLACK_WEBHOOK_URL }}
-      
 
     - name: Send email notification
 
