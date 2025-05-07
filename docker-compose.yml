@@ -1,0 +1,40 @@
+services:
+  selenium-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CI=true # Environment variable indicating CI environment
+    env_file: .env
+    volumes:
+      - .:/app
+      - m2:/root/.m2 
+      - ./chrome:/opt/google/chrome
+      - extra-dependencies:/usr/share/maven/ref 
+    networks:
+      - test-network-luma
+    depends_on:
+      - mailhog
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Web UI
+    networks:
+      - test-network-luma
+    environment:
+      - MH_SMTP_BIND_ADDR=0.0.0.0:1025
+      - MH_API_BIND_ADDR=0.0.0.0:8025
+
+
+
+volumes:
+  m2:
+  chrome:
+  extra-dependencies:
+
+
+networks:
+  test-network-luma:
+    driver: bridge

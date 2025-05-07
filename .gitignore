@@ -1,0 +1,8 @@
+.settings
+.idea
+.env
+
+.allure
+.classpath
+.project
+target
