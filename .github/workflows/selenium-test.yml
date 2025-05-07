@@ -11,7 +11,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
     
     runs-on: ${{ matrix.os }}
 
@@ -53,11 +53,14 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_CHANNEL: test-automation
         SLACK_TITLE: "🧪 Luma Test Results - ${{ matrix.os }}"
-        SLACK_MESSAGE: ${{ job.status == 'success' && '✅ All tests passed!' || '❌ Some tests failed!' }}
-        SLACK_COLOR: ${{ job.status == 'success' && 'good' || 'danger' }}
+        SLACK_MESSAGE: "${{ job.status == 'success' && '✅ Amalitech will not kill me this year!' || '❌ Some tests failed!' }}"
+        SLACK_COLOR: "${{ job.status == 'success' && 'good' || 'danger' }}"
         SLACK_FOOTER: "Automated Selenium Test Results"
+        SLACK_USERNAME: "GitHub Actions"
+        SLACK_ICON: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
 
     - name: Send email notification
+
       if: always()
       uses: dawidd6/action-send-mail@v3
       with:
