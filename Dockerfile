@@ -11,10 +11,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y google-chrome-stable \
     && rm -rf /var/lib/apt/lists/*
 
-
-
-ENV PATH="/usr/local/bin/chromedriver:${PATH}"
-
 WORKDIR /app
 
 COPY pom.xml .
